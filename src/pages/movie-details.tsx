@@ -1,4 +1,4 @@
-export const MovieDetails = () => {
+export const MovieDetailsPage = () => {
   return (
     <div>
       <h1>Movie Details</h1>
