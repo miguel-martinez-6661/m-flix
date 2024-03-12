@@ -8,3 +8,13 @@ export const searchMovies = async (query: string) => {
   });
   return response?.data;
 };
+
+export const getMovieById = async (id: string) => {
+  const response = await httpClient?.get("", {
+    params: {
+      i: id,
+      plot: "full",
+    },
+  });
+  return response?.data;
+};
