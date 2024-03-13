@@ -11,7 +11,7 @@ export const MovieDetailsPage = () => {
 
   return (
     <Page>
-      <div className="flex flex-col space-y-5 w-full mt-20">
+      <div className="flex flex-col space-y-5 w-full mt-20 lg:p-20">
         <div className="flex flex-col md:flex-row gap-4">
           <img
             src={selectedMovie?.Poster}

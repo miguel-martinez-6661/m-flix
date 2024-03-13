@@ -8,15 +8,17 @@ interface UseMovies {
 }
 
 export const useMovies = ({ fetchOnLoad = false }: UseMovies) => {
-  const [searchInput, setSearchInput] = useState<string>("Batman");
   const [loading, setLoading] = useState(false);
-  const { movies, setMovies, setSelectedMovie } = useMovieStore();
+  const { movies, setMovies, searchFilter, setSearchFilter, setSelectedMovie } =
+    useMovieStore();
+  const [searchInput, setSearchInput] = useState<string>(searchFilter);
 
   const search = useCallback(
     async (query: string) => {
       setLoading(true);
       const response = await searchMovies(query);
-      setMovies(response?.Search || []);
+      setSearchFilter(query);
+      setMovies(response || []);
       setLoading(false);
     },
     [setMovies],

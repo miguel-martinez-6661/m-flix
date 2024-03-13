@@ -1,12 +1,12 @@
+import { FaSearch } from "react-icons/fa";
+import { useMovies } from "@/hooks";
 import { MovieCarousel } from "@/components/home/movies-carousel";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Page } from "@/components/ui/page";
-import { useMovies } from "@/hooks";
-import { FaSearch } from "react-icons/fa";
 
 export const HomePage = () => {
-  const { loading, movies, onSearch } = useMovies({
+  const { loading, movies, onSearch, searchInput, setSearchInput } = useMovies({
     fetchOnLoad: true,
   });
 
@@ -26,8 +26,18 @@ export const HomePage = () => {
           Ready to watch? Enter your movie name or release year.
         </p>
 
-        <div className="flex w-full max-w-sm items-center space-x-2">
-          <Input type="email" placeholder="Movie name or release year" />
+        <div className="flex w-full max-w-md items-center space-x-2">
+          <Input
+            type="email"
+            placeholder="Enter your movie"
+            onChange={(e) => setSearchInput(e.target.value)}
+            onKeyUp={(e) => {
+              if (e.key === "Enter") {
+                onSearch();
+              }
+            }}
+            value={searchInput}
+          />
           <Button className="bg-red-600" onClick={onSearch}>
             <FaSearch className="mr-2" />
             Search
@@ -35,7 +45,6 @@ export const HomePage = () => {
         </div>
       </div>
       <div className="mt-10">
-        <h1 className="text-white text-xl mb-1">Your List</h1>
         <MovieCarousel movies={movies} isLoading={loading} />
       </div>
     </Page>

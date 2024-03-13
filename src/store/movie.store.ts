@@ -4,8 +4,8 @@ import { devtools, persist } from "zustand/middleware";
 
 interface MovieState {
   movies: Movie[];
-  searchFilter: string;
   setMovies: (movies: Movie[]) => void;
+  searchFilter: string;
   setSearchFilter: (searchFilter: string) => void;
   selectedMovie: Movie | null;
   setSelectedMovie: (movie: Movie) => void;
@@ -16,7 +16,7 @@ export const useMovieStore = create<MovieState>()(
     persist(
       (set) => ({
         movies: [],
-        searchFilter: "",
+        searchFilter: "Dragon Ball",
         setMovies: (movies: any) => set({ movies }),
         setSearchFilter: (searchFilter: string) => set({ searchFilter }),
         selectedMovie: null,

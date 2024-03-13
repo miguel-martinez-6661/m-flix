@@ -1,12 +1,18 @@
-import { httpClient } from "../utils";
+import { httpClient } from "@/utils";
 
 export const searchMovies = async (query: string) => {
-  const response = await httpClient?.get("", {
-    params: {
-      s: query,
-    },
-  });
-  return response?.data;
+  try {
+    const response = await httpClient?.get("", {
+      params: {
+        s: query,
+        y: query,
+      },
+    });
+
+    return response?.data?.Search || [];
+  } catch (error) {
+    console.error("Error searching movies", error);
+  }
 };
 
 export const getMovieById = async (id: string) => {
